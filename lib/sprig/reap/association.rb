@@ -22,7 +22,7 @@ module Sprig::Reap
 
     def polymorphic_dependencies
       return [] unless polymorphic?
-      @polymorphic_dependencies ||= ActiveRecord::Base.subclasses.select { |model| polymorphic_match? model }
+      @polymorphic_dependencies ||= ActiveRecord::Base.descendants.select { |model| polymorphic_match? model }
     end
 
     def polymorphic_match?(model)
